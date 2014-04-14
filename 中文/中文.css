@@ -1,0 +1,28 @@
+
+#content {
+   width:220px;
+   height:120px;
+}
+
+table {
+	border: thin solid #5D5F56;
+	border-collapse:collapse;
+}
+tr{
+	border: thin solid #5D5F56;
+	padding: 0.25em 0.5em;
+}
+td{
+	border: thin solid #5D5F56;
+	padding: 0.25em 0.5em;
+}
+
+li,ul{
+ //background:#CCC; /*一级目录的背景色*/
+ //border-bottom:#FFF 1px solid; /*下面的一条白边*/
+
+}
+ul {
+ //display:none;
+}
+
