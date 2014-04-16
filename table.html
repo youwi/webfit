@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TOMCAT</title>
+
+<link rel="stylesheet" href="table.css" type="text/css" title="default"  media="screen" />
+
+</head>
+<body>
+		<script src="jquery-2.1.0.min.js"></script>
+<center>
+		
+		<table id="table" >
+			<tr>
+			<th>型号</th>
+			<th>名称</th>
+			<th>价格</th>
+			<th>数量</th>
+			</tr>
+			
+			<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			</tr>
+			
+		</table>
+		<input type="button" value="提交" onclick="sub()" class="in"/>
+		<!-- 是自动 submin还是手动来写submit好呢!? -->
+		<input type="button" value="新行" onclick="newline();"  class="in"/>
+</center>
+<script type="text/javascript">
+/*		$(function(){
+			$.ajax({
+				type:'get',
+				url:'EquipmentServlet?option=list',
+				dataType:'json',
+				success:addi,
+				//自动传参数的!!
+				//自动打成数组对象
+			});
+		});
+		*/
+			//加载完成以后就运行这个
+			//success:function(abcd){//这个名称是任意的
+			//			addi(abcd);
+			//		}
+		
+		function addi(arry)
+		{
+			for(var i=0;i<arry.length;i++)
+			{
+				var tmp="<tr><td>"+arry[i].model+"<td>"+arry[i].name+"<td>"+arry[i].number+"<td>"+arry[i].price+"</td>";
+				$(tmp).appendTo("#table");
+			};//按对象 一行一行地添加....这是对象嘛 ...
+			
+
+			$("#table td").live("mouseover",function(){ $(this).css("backgroundColor","#333333");});
+			$("#table td").live("mouseout",function(){   $(this).css("backgroundColor","#ffffff");  });
+			//所有的td都会绑定的!但新添加的行bind不行!!
+			//  $("#table td").live(...)  这是活跃绑定
+			//  $("#table td").bind(...)
+			//  双击 叫:   dbl
+			$("#table td").live('dblclick',function()
+					{	
+					var text=$(this).text();
+					var td=$(this);
+					$(this).text("");
+					var input=$("<input>").appendTo(this);
+					input.val(text);
+				//	input.css();
+					input.focus();
+					input.bind("blur",function(){	td.text($(this).val());});
+					//	tt.focus();
+					//alert(v);
+					// $(this).remove();
+					// <input> 不需要手动$(this).remove();因为text()会把内容清空的
+			
+				});
+		}
+		
+		function newline()
+		{
+			$("<tr><td><td><td><td>").appendTo("#table");
+		}
+		function sub()
+		{
+			alert($("#table").serialize());
+			$("#table td");
+	/*		//好像只能一行一行地添加....
+			$.ajax({
+				type:'post',
+				url:'EquipmentServlet?option=add',
+				data:$("#table").val()
+				//自动传参数的!!
+				//自动打成数组对象
+			});
+	*/
+			/*		//好像只能一行一行地添加....
+			$.ajax({
+				type:'post',
+				url:'EquipmentServlet?option=update',
+				data:$("#table").val()
+				//自动传参数的!!
+				//自动打成数组对象
+			});
+	*/
+		}
+
+
+</script>
+
+</body>
+</html>
