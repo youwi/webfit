@@ -1,6 +1,21 @@
-<html>
-<body>
+
 <?php
+  if(!$_POST)	
+  {
+   exit;
+  }
+	if($_POST['name'] &&$_POST['text'])
+	{
+		$content= $_POST["text"];//得到post值
+		$path=$_POST['name'] ;		//TXT文本路径
+		$fp= fopen($path,'w');			//打开文件
+		fwrite($fp,$content);				//写入文件
+		fclose($fp);//
+		unset($content);
+		echo $path."文件保存成功";
+	}
+	if($_FILES)
+	if($_FILES["file"])
 	if ($_FILES["file"]["error"] > 0)
 	{
 		echo "Error: " . $_FILES["file"]["error"] . "<br />";
@@ -23,12 +38,20 @@
 		  }
 		
 	  }
+	  if(!$_POST)
+	  {
+	  ?>
+	  <html>
+		<body>
+	     <form action="upload.php" method="post" enctype="multipart/form-data">
+		<label for="file">文件名:</label>
+		<input type="file" name="file" id="file" /> 	<br />
+		<input type="submit" name="submit" value="Submit" />
+		</form>
+		</body>
+	</html>
+		<?php
+	  }
 ?>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-	<label for="file">文件名:</label>
-	<input type="file" name="file" id="file" /> 	<br />
-	<input type="submit" name="submit" value="Submit" />
-</form>
 
-</body>
-</html>
+

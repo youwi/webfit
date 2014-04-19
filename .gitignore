@@ -1,7 +1,4 @@
-build/dist
-docs
-.project
-*~
-*.diff
-*.patch
+.svn-base
+.svn
+.idea
 .DS_Store
